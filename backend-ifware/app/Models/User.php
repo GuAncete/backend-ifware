@@ -20,8 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'role',
         'password',
+        'role', 
     ];
 
     /**
@@ -31,7 +31,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'role',
         'remember_token',
     ];
 
@@ -46,5 +45,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function tasks(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class, 'task_user', 'userId', 'taskId');
     }
 }
