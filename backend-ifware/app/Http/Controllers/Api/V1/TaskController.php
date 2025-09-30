@@ -1,39 +1,65 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     /**
-     * Mostra uma tarefa específica com seus usuários.
+     * Display a listing of the resource.
      */
-    public function show(Task $task)
+    public function index()
     {
-        $task->load(['assignedUsers', 'project.client']);
-        return response()->json($task);
+        //
     }
 
     /**
-     * Atualiza o status de uma tarefa.
+     * Show the form for creating a new resource.
      */
-    public function updateStatus(Request $request, Task $task)
+    public function create()
     {
-        $validated = $request->validate([
-            'status' => ['required', 'string', 'in:A Fazer,Em Andamento,Concluído'],
-        ]);
+        //
+    }
 
-        $task->update(['status' => $validated['status']]);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-        // Regra de negócio: Se uma tarefa é concluída,
-        // podemos adicionar lógicas futuras aqui, como notificar alguém.
-        if ($validated['status'] === 'Concluído') {
-            // Lógica de notificação futura...
-        }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
-        return response()->json($task->fresh('assignedUsers'));
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }
