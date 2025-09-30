@@ -1,6 +1,8 @@
 <?php
 
 // Importando todos os controllers do namespace Api/V1
+
+use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\ClientController;
 use App\Http\Controllers\Api\V1\ProjectController;
@@ -32,9 +34,16 @@ Route::prefix('v1')->group(function () {
      * DELETE   /recurso/{id}   -> destroy()
      */
 
-    Route::apiResource('users', UserController::class);
-    Route::apiResource('clients', ClientController::class);
-    Route::apiResource('projects', ProjectController::class);
-    Route::apiResource('tasks', TaskController::class);
+    // --- Rotas Públicas (Autenticação) ---
+    Route::post('/login', [AuthController::class, 'login']);
 
+    Route::middleware('auth:sanctum')->group(function () {
+        
+        Route::post('/logout', [AuthController::class, 'logout']);
+
+        Route::apiResource('users', UserController::class);
+        // Route::apiResource('clients', ClientController::class);
+        // Route::apiResource('projects', ProjectController::class);
+        // Route::apiResource('tasks', TaskController::class);
+    });
 });
