@@ -41,7 +41,12 @@ class ProjectController extends Controller
         $validatedData = $request->validate();
         DB::beginTransaction();
         try{
-            $project = Project::create($validatedData);
+            $project = Project::create([
+                'nomeProjeto'       => $validatedData['nomeProjeto'],
+                'descricaoProjeto'  => $validatedData['descricaoProjeto'],
+                'statusProjeto'     => $validatedData['statusProjeto'],
+                'clienteId'         => $validatedData['clienteId'],
+            ]);
             DB::commit();
             return response()->json($project, 201); // 201 Created é o status correto para criação
         } catch (Exception $e) {
