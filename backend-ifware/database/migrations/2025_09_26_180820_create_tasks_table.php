@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('tituloTask');
             $table->text('descricaoTask')->nullable();
-            $table->string('status')->default('A Fazer'); // 'A Fazer', 'Em Andamento', 'Concluído'
-            $table->integer('ordem')->default(0);
+            $table->string('statusTask')->default('A Fazer'); // 'A Fazer', 'Em Andamento', 'Concluído'
+            $table->integer('ordemTask')->default(0);
             $table->foreignId('projetoId')->constrained('projects')->onDelete('cascade');
             $table->timestamps();
         });

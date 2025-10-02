@@ -95,10 +95,6 @@ class UserController extends Controller
 
         DB::beginTransaction();
         try {
-            // Se uma nova senha foi enviada, faz o hash. Senão, mantém a antiga.
-            if (isset($validatedData['password'])) {
-                $validatedData['password'] = Hash::make($validatedData['password']);
-            }
 
             $user->update($validatedData);
 

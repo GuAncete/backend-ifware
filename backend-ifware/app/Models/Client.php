@@ -14,6 +14,8 @@ class Client extends Model
         'nomeCliente',
         'emailContato',
         'telefoneContato',
+        'statusCliente',
+        'descricaoCliente',
     ];
 
     /**

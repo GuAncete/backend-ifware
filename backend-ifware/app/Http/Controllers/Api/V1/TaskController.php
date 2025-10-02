@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
 {
@@ -12,7 +14,13 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = QueryBuilder::for(Task::class)
+            ->allowedFilters(['title', 'status', 'priority'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->appends(request()->query());
+
+        return response()->json($tasks);
     }
 
     /**
