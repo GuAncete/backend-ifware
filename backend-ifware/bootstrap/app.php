@@ -12,10 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // AQUI: Adicionamos nosso middleware para ser executado
-        // em todas as requisições do grupo 'api'.
+        // Adicione esta configuração de cabeçalho
         $middleware->api(prepend: [
-            \App\Http\Middleware\ForceJsonResponse::class
+            \Illuminate\Http\Middleware\HandleCors::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

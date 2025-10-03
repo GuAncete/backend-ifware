@@ -42,8 +42,8 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
 
         Route::apiResource('users', UserController::class);
-        // Route::apiResource('clients', ClientController::class);
-        // Route::apiResource('projects', ProjectController::class);
-        // Route::apiResource('tasks', TaskController::class);
+        Route::apiResource('clients', ClientController::class);
+        Route::apiResource('projects', ProjectController::class);
+        Route::apiResource('tasks', TaskController::class);
     });
 });
