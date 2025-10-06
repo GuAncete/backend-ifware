@@ -82,7 +82,11 @@ class TaskController extends Controller
         $validatedData = $request->validate();
         DB::beginTransaction();
         try {
-            $task->update($validatedData);
+            $task->update(['tituloTask' => $validatedData['tituloTask'],
+                          'descricaoTask' => $validatedData['descricaoTask'],
+                          'statusTask' => $validatedData['statusTask'],
+                          'ordemTask' => $validatedData['ordemTask'],
+                          'projetoId' => $validatedData['projetoId']]);
             DB::commit();
             return response()->json($task, 200); // 200 OK é o status correto para atualização
         } catch (Exception $e) {
